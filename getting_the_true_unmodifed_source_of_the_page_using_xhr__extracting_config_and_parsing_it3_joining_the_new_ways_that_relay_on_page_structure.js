@@ -65,8 +65,12 @@ function get_resources(url, callback){
       document.documentElement          ).appendChild(script);
 
     resources = {};
+    try{
     resources.standard = parse(self.mockplayer.config.args.url_encoded_fmt_stream_map);   //on a perfect world it would have been:  ytplayer.config.args.url_encoded_fmt_stream_map
+    }catch(err){}
+    try{
     resources.adaptive = parse(self.mockplayer.config.args.adaptive_fmts);                //ytplayer.config.args.adaptive_fmts
+    }catch(err){}
 
     
     callback(resources);
